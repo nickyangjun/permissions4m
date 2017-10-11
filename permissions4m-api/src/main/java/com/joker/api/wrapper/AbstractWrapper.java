@@ -297,13 +297,7 @@ public abstract class AbstractWrapper implements PermissionWrapper, Cloneable {
      */
     @SuppressWarnings("unchecked")
     private void requestPermissionWithAnnotation() {
-        if (ManufacturerSupportUtil.isUnderMNeedChecked(isRequestUnderM())) {
-            if (PermissionsChecker.isPermissionGranted(getActivity(), getRequestPermission())) {
-                NormalApplyPermissions.grantedWithAnnotation(this);
-            } else {
-                ForceApplyPermissions.deniedWithAnnotationForUnderM(this);
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String permission = getRequestPermission();
             if (ContextCompat.checkSelfPermission(getActivity(), permission) != PackageManager
                     .PERMISSION_GRANTED) {
@@ -311,7 +305,13 @@ public abstract class AbstractWrapper implements PermissionWrapper, Cloneable {
             } else {
                 mayGrantedWithAnnotation();
             }
-        } else {
+        }else if (ManufacturerSupportUtil.isUnderMNeedChecked(isRequestUnderM())) {
+            if (PermissionsChecker.isPermissionGranted(getActivity(), getRequestPermission())) {
+                NormalApplyPermissions.grantedWithAnnotation(this);
+            } else {
+                ForceApplyPermissions.deniedWithAnnotationForUnderM(this);
+            }
+        }  else {
             NormalApplyPermissions.grantedWithAnnotation(this);
         }
     }
