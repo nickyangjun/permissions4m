@@ -26,7 +26,7 @@ public class PermissionsPageManager {
     static final String MANUFACTURER_OPPO = "OPPO";
     static final String MANUFACTURER_VIVO = "vivo";
     static final String MANUFACTURER_MEIZU = "meizu";
-    static final String manufacturer = Build.MANUFACTURER;
+    static final String manufacturer = Build.MANUFACTURER.toLowerCase();
 
     public static String getManufacturer() {
         return manufacturer;

@@ -58,8 +58,9 @@ public class ManufacturerSupportUtil {
      * @return
      */
     public static boolean isUnderMNeedChecked(boolean isUnderMNeedChecked) {
-        return isUnderMHasPermissionRequestManufacturer() && isUnderMNeedChecked &&
-                isAndroidL();
+        return isUnderMNeedChecked;
+//        return isUnderMHasPermissionRequestManufacturer() && isUnderMNeedChecked &&
+//                isAndroidL();
     }
 
     /**
