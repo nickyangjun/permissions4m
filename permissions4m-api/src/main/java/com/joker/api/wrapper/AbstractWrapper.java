@@ -26,7 +26,7 @@ public abstract class AbstractWrapper implements PermissionWrapper, Cloneable {
     private static final int DEFAULT_PAGE_TYPE = Permissions4M.PageType.ANDROID_SETTING_PAGE;
     private static final int DEFAULT_REQUEST_CODE = -1;
     private static final boolean DEFAULT_IS_FORCE = true;
-    private static final boolean DEFAULT_IS_ALLOWED = false;
+    private static final boolean DEFAULT_IS_ALLOWED = true;
     private static Map<Key, WeakReference<PermissionWrapper>> wrapperMap = new HashMap<>();
     @Permissions4M.PageType
     private int pageType = DEFAULT_PAGE_TYPE;
