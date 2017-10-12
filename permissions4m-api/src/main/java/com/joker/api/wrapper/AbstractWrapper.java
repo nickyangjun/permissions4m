@@ -336,20 +336,20 @@ public abstract class AbstractWrapper implements PermissionWrapper, Cloneable {
      * {@link ManufacturerSupportUtil#isUnderMHasPermissionRequestManufacturer()}
      */
     public void requestPermissionWithListener() {
-        if (ManufacturerSupportUtil.isUnderMNeedChecked(isRequestUnderM())) {
-            if (PermissionsChecker.isPermissionGranted(getActivity(), getRequestPermission())) {
-                NormalApplyPermissions.grantedWithListener(this);
-            } else {
-                ForceApplyPermissions.deniedWithListenerForUnderM(this);
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(getActivity(), getRequestPermission()) != PackageManager
                     .PERMISSION_GRANTED) {
                 tryRequestWithListener();
             } else {
                 mayGrantedWithListener();
             }
-        } else {
+        }else if (ManufacturerSupportUtil.isUnderMNeedChecked(isRequestUnderM())) {
+            if (PermissionsChecker.isPermissionGranted(getActivity(), getRequestPermission())) {
+                NormalApplyPermissions.grantedWithListener(this);
+            } else {
+                ForceApplyPermissions.deniedWithListenerForUnderM(this);
+            }
+        }  else {
             NormalApplyPermissions.grantedWithListener(this);
         }
     }
